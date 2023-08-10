@@ -59,6 +59,7 @@ public class Perceptron {
             dw = corr * inputs[i];
             weights[i] += dw;
         }
+        threshold += corr;
     }
 
     /**

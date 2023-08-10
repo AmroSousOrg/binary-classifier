@@ -36,6 +36,7 @@ public class Model {
     }
 
     public void deleteLastPoint() {
+        if (points.isEmpty()) return;
         points.remove(points.size() - 1);
     }
 
@@ -69,9 +70,30 @@ public class Model {
         double th = perceptron.getThreshold();
         double w1 = perceptron.getWeights()[0];
         double w2 = perceptron.getWeights()[1];
-        double x1 = th / w1;
-        double x2 = (th - canvas.getHeight() * w2) / w1;
-        gc.strokeLine(x1, 0, x2, canvas.getHeight());
+        double slope = -w1 / w2;
+        double yIntercept = th / w2;
+        double x1, x2, y1, y2;
+
+        if (slope >= 0) {
+            if (yIntercept <= 0) {
+                x1 = 0;
+                y1 = th / w2;
+            } else {
+                y1 = 0;
+                x1 = th / w1;
+            }
+            y2 = canvas.getHeight();
+            x2 = (th - y2 * w2) / w1;
+        }
+        else {
+            x1 = 0;
+            y1 = th / w2;
+            y2 = 0;
+            x2 = th / w1;
+        }
+        System.out.printf("Weights --> " + w1 + " , " + w2 + " , threshold = " + th + "\n");
+        System.out.printf("Line --> " + x1 + " , " + y1 + " , " + x2 + " , " + y2 + "\n");
+        gc.strokeLine(x1, y1, x2, y2);
     }
 
     public void paintPoints(Canvas canvas) {

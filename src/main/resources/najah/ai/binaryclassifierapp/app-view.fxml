@@ -18,134 +18,116 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="najah.ai.binaryclassifierapp.ViewController">
-   <children>
-      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="563.0" prefWidth="655.0">
-         <Pane layoutX="11.0" layoutY="11.0" prefHeight="411.0" prefWidth="632.0" style="-fx-background-color: ddd;">
-            <Pane layoutX="10.0" layoutY="8.0" prefHeight="394.0" prefWidth="528.0" style="-fx-background-color: white; -fx-border-color: black;">
-               <children>
-                  <Canvas fx:id="canvas" height="392.0" layoutX="1.0" layoutY="1.0" onMousePressed="#canvasClicked" width="526.0" />
-               </children>
-            </Pane>
-            <VBox alignment="TOP_CENTER" layoutX="561.0" layoutY="23.0" prefHeight="365.0" prefWidth="47.0" style="-fx-spacing: 20; -fx-padding: 7;">
-               <children>
-                  <ImageView fitHeight="28.0" fitWidth="27.0" onMouseClicked="#blackPinFired">
-                     <image>
-                        <Image url="@../../../images/blackColor.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fitHeight="33.0" fitWidth="33.0" onMouseClicked="#redPinFired">
-                     <image>
-                        <Image url="@../../../images/redColor.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fitHeight="33.0" fitWidth="33.0" onMouseClicked="#eraserFired">
-                     <image>
-                        <Image url="@../../../images/eraser.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fitHeight="33.0" fitWidth="33.0" onMouseClicked="#clearPointsFired">
-                     <image>
-                        <Image url="@../../../images/clear.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fitHeight="33.0" fitWidth="33.0" onMouseClicked="#undoPointFired">
-                     <image>
-                        <Image url="@../../../images/return.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fitHeight="33.0" fitWidth="33.0" onMouseClicked="#testPointFired">
-                     <image>
-                        <Image url="@../../../images/questionMark.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fitHeight="33.0" fitWidth="33.0" onMouseClicked="#defaultCursorFired">
-                     <image>
-                        <Image url="@../../../images/cursor.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </VBox>
+   <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="563.0" prefWidth="655.0">
+      <Pane layoutX="11.0" layoutY="11.0" prefHeight="411.0" prefWidth="632.0" style="-fx-background-color: ddd;">
+         <Pane layoutX="10.0" layoutY="8.0" prefHeight="394.0" prefWidth="528.0" style="-fx-background-color: white; -fx-border-color: black;">
+            <Canvas fx:id="canvas" height="392.0" layoutX="1.0" layoutY="1.0" onMouseDragged="#canvasDragged" onMousePressed="#canvasClicked" width="526.0" />
          </Pane>
-         <Pane layoutX="12.0" layoutY="426.0" prefHeight="154.0" prefWidth="631.0">
-            <Label alignment="CENTER" layoutX="27.0" layoutY="21.0" prefHeight="38.0" prefWidth="160.0" text="Learning Rate: " textAlignment="CENTER">
-               <font>
-                  <Font name="Courier New" size="16.0" />
-               </font>
-               <effect>
-                  <Blend />
-               </effect>
-            </Label>
-            <Label alignment="CENTER" layoutX="27.0" layoutY="71.0" prefHeight="38.0" prefWidth="160.0" text="Max Iteration: " textAlignment="CENTER">
-               <font>
-                  <Font name="Courier New" size="16.0" />
-               </font>
-               <effect>
-                  <Blend />
-               </effect>
-            </Label>
-            <Slider fx:id="learningRate" layoutX="252.0" layoutY="33.0" max="0.99" min="0.01" onMouseDragged="#learningSliderChanged" prefHeight="14.0" prefWidth="197.0" value="0.3">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Slider>
-            <Button alignment="CENTER" layoutX="491.0" layoutY="62.0" mnemonicParsing="false" onAction="#startLearningFired" prefHeight="33.0" prefWidth="110.0" text="Start Training">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <effect>
-                  <DropShadow>
-                     <color>
-                        <Color opacity="0.3160173296928406" />
-                     </color>
-                  </DropShadow>
-               </effect>
+         <VBox alignment="TOP_CENTER" layoutX="561.0" layoutY="23.0" prefHeight="365.0" prefWidth="47.0" style="-fx-spacing: 20; -fx-padding: 7;">
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+            <ImageView accessibleHelp="Black Point" accessibleRole="TOOLTIP" accessibleRoleDescription="Black Point" accessibleText="Black Point" fitHeight="28.0" fitWidth="27.0" onMouseClicked="#blackPinFired">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-            </Button>
-            <Label fx:id="learningValueLabel" alignment="CENTER" layoutX="181.0" layoutY="26.0" prefHeight="28.0" prefWidth="58.0" style="-fx-border-color: black; -fx-border-width: 0.5;" text="0.3">
-               <font>
-                  <Font name="SimSun" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="messageLabel" alignment="CENTER" layoutX="76.0" layoutY="119.0" prefHeight="21.0" prefWidth="480.0" textFill="#f80000">
-               <font>
-                  <Font name="SimSun-ExtB" size="14.0" />
-               </font>
-            </Label>
-            <Slider fx:id="maxIteration" layoutX="252.0" layoutY="83.0" max="200.0" min="1.0" onMouseDragged="#maxIterationChanged" prefHeight="14.0" prefWidth="197.0" value="5.0">
+               <Image url="@../../../images/blackColor.png" />
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="33.0" onMouseClicked="#redPinFired">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></Slider>
-            <TextField fx:id="maxIterationField" alignment="CENTER" layoutX="181.0" layoutY="75.0" onAction="#maxIterationFieldChanged" prefHeight="21.0" prefWidth="58.0" text="5">
-               <font>
-                  <Font name="SimSun" size="16.0" />
-               </font>
-            </TextField>
-         </Pane>
-      </AnchorPane>
-   </children>
+               </cursor>
+               <Image url="@../../../images/redColor.png" />
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="33.0" onMouseClicked="#eraserFired">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <Image url="@../../../images/eraser.png" />
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="33.0" onMouseClicked="#clearPointsFired">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <Image url="@../../../images/clear.png" />
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="33.0" onMouseClicked="#undoPointFired">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <Image url="@../../../images/return.png" />
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="33.0" onMouseClicked="#testPointFired">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <Image url="@../../../images/questionMark.png" />
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="33.0" onMouseClicked="#defaultCursorFired">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <Image url="@../../../images/cursor.png" />
+            </ImageView>
+         </VBox>
+      </Pane>
+      <Pane layoutX="12.0" layoutY="426.0" prefHeight="154.0" prefWidth="631.0">
+         <Label alignment="CENTER" layoutX="27.0" layoutY="21.0" prefHeight="38.0" prefWidth="160.0" text="Learning Rate: " textAlignment="CENTER">
+            <font>
+               <Font name="Courier New" size="16.0" />
+            </font>
+            <effect>
+               <Blend />
+            </effect>
+         </Label>
+         <Label alignment="CENTER" layoutX="27.0" layoutY="71.0" prefHeight="38.0" prefWidth="160.0" text="Max Iteration: " textAlignment="CENTER">
+            <font>
+               <Font name="Courier New" size="16.0" />
+            </font>
+            <effect>
+               <Blend />
+            </effect>
+         </Label>
+         <Slider fx:id="learningRate" layoutX="252.0" layoutY="33.0" max="0.99" min="0.01" onMouseDragged="#learningSliderChanged" prefHeight="14.0" prefWidth="197.0" value="0.1">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Slider>
+         <Button alignment="CENTER" layoutX="491.0" layoutY="62.0" mnemonicParsing="false" onAction="#startLearningFired" prefHeight="33.0" prefWidth="110.0" text="Start Training">
+            <font>
+               <Font size="14.0" />
+            </font>
+            <effect>
+               <DropShadow>
+                  <color>
+                     <Color opacity="0.3160173296928406" />
+                  </color>
+               </DropShadow>
+            </effect>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
+         <Label fx:id="learningValueLabel" alignment="CENTER" layoutX="181.0" layoutY="26.0" prefHeight="28.0" prefWidth="58.0" style="-fx-border-color: black; -fx-border-width: 0.5;" text="0.1">
+            <font>
+               <Font name="SimSun" size="16.0" />
+            </font>
+         </Label>
+         <Label fx:id="messageLabel" alignment="CENTER" layoutX="76.0" layoutY="119.0" prefHeight="21.0" prefWidth="480.0" textFill="#f80000">
+            <font>
+               <Font name="SimSun-ExtB" size="14.0" />
+            </font>
+         </Label>
+         <Slider fx:id="maxIteration" layoutX="252.0" layoutY="83.0" max="200.0" min="1.0" onMouseDragged="#maxIterationChanged" prefHeight="14.0" prefWidth="197.0" value="10.0">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Slider>
+         <TextField fx:id="maxIterationField" alignment="CENTER" layoutX="181.0" layoutY="75.0" onAction="#maxIterationFieldChanged" prefHeight="21.0" prefWidth="58.0" text="10">
+            <font>
+               <Font name="SimSun" size="16.0" />
+            </font>
+         </TextField>
+      </Pane>
+   </AnchorPane>
 </AnchorPane>

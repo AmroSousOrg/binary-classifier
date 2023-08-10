@@ -123,6 +123,14 @@ public class ViewController {
     }
 
     @FXML
+    private void canvasDragged(MouseEvent e) {
+        if (mode == Mode.ERASER) {
+            model.clearPointsNear(e.getX(), e.getY(), 10);
+            model.paintPoints(canvas);
+        }
+    }
+
+    @FXML
     private void canvasClicked(MouseEvent e) {
         double x = e.getX();
         double y = e.getY();
@@ -144,7 +152,8 @@ public class ViewController {
             case TEST -> {
                 int result = model.predictData(x, y);
                 model.addPoint(new Data(new double[] {x, y}, result));
-                model.paintPoints(canvas);
+                gc.setFill(result == 0 ? Color.BLACK : Color.RED);
+                gc.fillOval(x - 2, y - 2, 5, 5);
             }
 
             case ERASER -> {
