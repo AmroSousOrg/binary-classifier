@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class Model {
@@ -36,6 +37,7 @@ public class Model {
     }
 
     public void deleteLastPoint() {
+        if (points.isEmpty()) return;
         points.remove(points.size() - 1);
     }
 
@@ -44,8 +46,13 @@ public class Model {
     }
 
     public void train() {
+        AtomicBoolean finish = new AtomicBoolean(true);
         for (int itr = 1; itr <= maxIteration; itr++) {
-            points.forEach(perceptron::learn);
+            finish.set(true);
+            points.forEach(p -> {
+                if (perceptron.learn(p) != 0) finish.set(false);
+            });
+            if (finish.get()) break;
         }
     }
 
@@ -69,9 +76,8 @@ public class Model {
         double th = perceptron.getThreshold();
         double w1 = perceptron.getWeights()[0];
         double w2 = perceptron.getWeights()[1];
-        double x1 = th / w1;
-        double x2 = (th - canvas.getHeight() * w2) / w1;
-        gc.strokeLine(x1, 0, x2, canvas.getHeight());
+
+        gc.strokeLine(0, th / w2, canvas.getWidth(), (th - canvas.getWidth() * w1) / w2);
     }
 
     public void paintPoints(Canvas canvas) {

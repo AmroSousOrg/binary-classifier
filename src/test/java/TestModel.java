@@ -1,8 +1,8 @@
+import javafx.scene.canvas.Canvas;
 import najah.ai.binaryclassifierapp.Data;
 import org.junit.jupiter.api.Test;
 import najah.ai.binaryclassifierapp.Model;
 
-import java.util.Arrays;
 
 public class TestModel {
 
@@ -10,18 +10,17 @@ public class TestModel {
 
     @Test
     public void testModel() {
-//        this.model = new Model();
-//        model.setMaxIteration(3);
-//        model.setLearningRate(0.3);
-//        model.addPoint(new Data(new double[]{0, 0}, 0));
-//        model.addPoint(new Data(new double[]{0, 1}, 0));
-//        model.addPoint(new Data(new double[]{1, 0}, 0));
-//        model.addPoint(new Data(new double[]{1, 1}, 1));
-//        model.train();
-//        System.out.println(Arrays.toString(model.getWeights()));
-//        System.out.println(model.testData(new Data(new double[] {1, 2}, 0)));
-//        System.out.println(model.testData(new Data(new double[] {2, 1}, 0)));
-//        System.out.println(model.testData(new Data(new double[] {-0.7, -0.4}, 0)));
-//        System.out.println(model.testData(new Data(new double[] {0.4, 0}, 0)));
+        this.model = new Model();
+        model.setMaxIteration(100);
+        model.setLearningRate(0.08);
+        model.initPerceptron();
+        model.addPoint(new Data(new double[]{1, 3}, 0));
+        model.addPoint(new Data(new double[]{2, 2}, 0));
+        model.addPoint(new Data(new double[]{3, 3}, 0));
+        model.addPoint(new Data(new double[]{4, 1}, 0));
+        model.addPoint(new Data(new double[]{4, 6}, 1));
+        model.addPoint(new Data(new double[]{5, 7}, 1));
+        model.addPoint(new Data(new double[]{5, 3}, 1));
+        model.drawClassificationLine(new Canvas());
     }
 }
