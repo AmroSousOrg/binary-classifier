@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class Model {
@@ -45,8 +46,13 @@ public class Model {
     }
 
     public void train() {
+        AtomicBoolean finish = new AtomicBoolean(true);
         for (int itr = 1; itr <= maxIteration; itr++) {
-            points.forEach(perceptron::learn);
+            finish.set(true);
+            points.forEach(p -> {
+                if (perceptron.learn(p) != 0) finish.set(false);
+            });
+            if (finish.get()) break;
         }
     }
 
@@ -70,30 +76,8 @@ public class Model {
         double th = perceptron.getThreshold();
         double w1 = perceptron.getWeights()[0];
         double w2 = perceptron.getWeights()[1];
-        double slope = -w1 / w2;
-        double yIntercept = th / w2;
-        double x1, x2, y1, y2;
 
-        if (slope >= 0) {
-            if (yIntercept <= 0) {
-                x1 = 0;
-                y1 = th / w2;
-            } else {
-                y1 = 0;
-                x1 = th / w1;
-            }
-            y2 = canvas.getHeight();
-            x2 = (th - y2 * w2) / w1;
-        }
-        else {
-            x1 = 0;
-            y1 = th / w2;
-            y2 = 0;
-            x2 = th / w1;
-        }
-        System.out.printf("Weights --> " + w1 + " , " + w2 + " , threshold = " + th + "\n");
-        System.out.printf("Line --> " + x1 + " , " + y1 + " , " + x2 + " , " + y2 + "\n");
-        gc.strokeLine(x1, y1, x2, y2);
+        gc.strokeLine(0, th / w2, canvas.getWidth(), (th - canvas.getWidth() * w1) / w2);
     }
 
     public void paintPoints(Canvas canvas) {

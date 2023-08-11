@@ -59,16 +59,16 @@ public class Perceptron {
             dw = corr * inputs[i];
             weights[i] += dw;
         }
-        threshold += corr;
+//        threshold += corr;
     }
 
     /**
      *  learn method that take single data
      *  and adjust weights depending on features vector
      */
-    public void learn(Data data) {
+    public double learn(Data data) {
 
-        if (data == null) return;
+        if (data == null) return 99;
 
         double[] inputs = data.features();
         double bigX = calcBigX(inputs);
@@ -77,6 +77,7 @@ public class Perceptron {
         int err = desiredOutput - actualOutput;
 
         adjustWeights(inputs, err);
+        return err;
     }
 
     /**
@@ -88,7 +89,7 @@ public class Perceptron {
         for (int i = 0; i < weights.length; i++) {
             weights[i] = rand.nextDouble(-0.5, 0.5);
         }
-        threshold = rand.nextDouble(-0.5, 0.5);
+        threshold = 100;
     }
 
     /**

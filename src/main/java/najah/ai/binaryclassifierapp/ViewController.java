@@ -60,7 +60,7 @@ public class ViewController {
      */
     @FXML
     private void learningSliderChanged() {
-        learningValueLabel.setText(String.format("%.2f", learningRate.getValue()));
+        learningValueLabel.setText(String.format("%.4f", learningRate.getValue()));
     }
 
     @FXML

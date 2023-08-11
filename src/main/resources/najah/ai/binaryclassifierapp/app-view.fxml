@@ -72,7 +72,7 @@
          </VBox>
       </Pane>
       <Pane layoutX="12.0" layoutY="426.0" prefHeight="154.0" prefWidth="631.0">
-         <Label alignment="CENTER" layoutX="27.0" layoutY="21.0" prefHeight="38.0" prefWidth="160.0" text="Learning Rate: " textAlignment="CENTER">
+         <Label alignment="CENTER" layoutX="14.0" layoutY="21.0" prefHeight="38.0" prefWidth="160.0" text="Learning Rate: " textAlignment="CENTER">
             <font>
                <Font name="Courier New" size="16.0" />
             </font>
@@ -80,7 +80,7 @@
                <Blend />
             </effect>
          </Label>
-         <Label alignment="CENTER" layoutX="27.0" layoutY="71.0" prefHeight="38.0" prefWidth="160.0" text="Max Iteration: " textAlignment="CENTER">
+         <Label alignment="CENTER" layoutX="14.0" layoutY="71.0" prefHeight="38.0" prefWidth="160.0" text="Max Iteration: " textAlignment="CENTER">
             <font>
                <Font name="Courier New" size="16.0" />
             </font>
@@ -88,7 +88,7 @@
                <Blend />
             </effect>
          </Label>
-         <Slider fx:id="learningRate" layoutX="252.0" layoutY="33.0" max="0.99" min="0.01" onMouseDragged="#learningSliderChanged" prefHeight="14.0" prefWidth="197.0" value="0.1">
+         <Slider fx:id="learningRate" blockIncrement="0.001" layoutX="252.0" layoutY="33.0" max="0.999" min="0.001" onMouseDragged="#learningSliderChanged" prefHeight="14.0" prefWidth="197.0" value="0.005">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor>
@@ -108,7 +108,7 @@
                <Cursor fx:constant="HAND" />
             </cursor>
          </Button>
-         <Label fx:id="learningValueLabel" alignment="CENTER" layoutX="181.0" layoutY="26.0" prefHeight="28.0" prefWidth="58.0" style="-fx-border-color: black; -fx-border-width: 0.5;" text="0.1">
+         <Label fx:id="learningValueLabel" alignment="CENTER" layoutX="169.0" layoutY="26.0" prefHeight="28.0" prefWidth="70.0" style="-fx-border-color: black; -fx-border-width: 0.5;" text="0.050">
             <font>
                <Font name="SimSun" size="16.0" />
             </font>
@@ -118,12 +118,12 @@
                <Font name="SimSun-ExtB" size="14.0" />
             </font>
          </Label>
-         <Slider fx:id="maxIteration" layoutX="252.0" layoutY="83.0" max="200.0" min="1.0" onMouseDragged="#maxIterationChanged" prefHeight="14.0" prefWidth="197.0" value="10.0">
+         <Slider fx:id="maxIteration" layoutX="252.0" layoutY="83.0" max="100000.0" min="1.0" onMouseDragged="#maxIterationChanged" prefHeight="14.0" prefWidth="197.0" value="100.0">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor>
          </Slider>
-         <TextField fx:id="maxIterationField" alignment="CENTER" layoutX="181.0" layoutY="75.0" onAction="#maxIterationFieldChanged" prefHeight="21.0" prefWidth="58.0" text="10">
+         <TextField fx:id="maxIterationField" alignment="CENTER" layoutX="169.0" layoutY="75.0" onAction="#maxIterationFieldChanged" prefHeight="27.0" prefWidth="70.0" text="100">
             <font>
                <Font name="SimSun" size="16.0" />
             </font>
